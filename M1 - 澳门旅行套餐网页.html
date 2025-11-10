@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智慧澳旅 - 旅游套餐</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#6B8E68', // 低饱和绿色
+                        secondary: '#E6A65D', // 低饱和橙色
+                        accent: '#F2C96D', // 低饱和黄色
+                        highlight: '#C75146', // 低饱和红色
+                        light: '#F5F5F0', // 浅色背景
+                        dark: '#4A4A48' // 文本颜色
+                    },
+                    fontFamily: {
+                        sans: ['Nunito', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .花边 {
+                background-image: url("data:image/svg+xml,%3Csvg width='100' height='20' viewBox='0 0 100 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M21.184 20c.357-.13.72-.264.888-.14 1.24.916 1.8 2.042 3.367 2.042 1.44 0 2.16-1.05 3.6-1.05 1.74 0 2.46 1.247 4.26 1.247 2.16 0 2.64-1.2 4.2-1.2 1.56 0 2.28 1.05 3.96 1.05 1.8 0 2.4-1.26 3.6-1.26 1.32 0 2.16.96 3.6.96 1.44 0 2.16-.78 3.24-.78 1.32 0 2.16.96 3.6.96 1.44 0 2.04-1.05 3.3-1.05 1.14 0 1.98.87 3.06.87 1.08 0 2.28-1.35 3.48-1.35 1.32 0 2.52.87 3.96.87 1.32 0 2.64-1.17 3.6-1.17 1.08 0 2.52.9 3.6.9 1.08 0 2.16-1.05 3.24-1.05V0H0v20h21.184z' fill='%23e6a65d' fill-opacity='0.3' fill-rule='evenodd'/%3E%3C/svg%3E");
+            }
+            .card-shadow {
+                box-shadow: 0 5px 15px rgba(107, 142, 104, 0.1);
+            }
+            .btn-hover {
+                transition: all 0.3s ease;
+            }
+            .btn-hover:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 5px 15px rgba(199, 81, 70, 0.3);
+            }
+        }
+    </style>
+</head>
+<body class="bg-light text-dark font-sans">
+    <div class="container mx-auto px-4 py-8 flex flex-col md:flex-row gap-6">
+        <!-- 左侧栏：公司信息 -->
+        <div class="w-full md:w-[23%] bg-white rounded-lg p-5 card-shadow">
+            <div class="text-center mb-6">
+                <h1 class="text-2xl font-extrabold text-primary mb-2">智慧澳旅</h1>
+                <div class="w-20 h-1 bg-secondary mx-auto"></div>
+            </div>
+            
+            <div class="mb-6花边 py-4"></div>
+            
+            <div class="company-info">
+                <button id="info-btn" class="flex items-center justify-center w-full py-2 text-primary border border-primary rounded-lg mb-4 hover:bg-primary/5 transition">
+                    <i class="fa fa-info-circle mr-2"></i> 公司简介
+                </button>
+                
+                <div id="company-intro" class="hidden bg-primary/5 p-4 rounded-lg mb-6">
+                    <p class="mb-2">智慧澳旅专注于为各类游客提供高品质、高性价比的澳门旅游服务。</p>
+                    <p class="mb-2">我们深耕澳门旅游市场多年，熟悉当地风土人情与特色景点，精心设计每一条线路。</p>
+                    <p>无论是大学生穷游、家庭亲子游还是情侣浪漫游，我们都能为您提供量身定制的旅游方案，让您以最实惠的价格，体验最地道的澳门风情。</p>
+                </div>
+                
+                <!-- 新增的其他可选套餐板块 -->
+                <div class="mb-6">
+                    <h3 class="font-bold text-primary text-center mb-3">其他可选套餐</h3>
+                    <button id="family-tour-btn" class="flex items-center justify-center w-full py-2 text-primary border border-primary rounded-lg hover:bg-primary/5 transition">
+                        <i class="fa fa-home mr-2"></i> 家庭澳门一日游
+                    </button>
+                </div>
+                
+                <div class="text-center">
+                    <img src="https://p26-flow-imagex-download-sign.byteimg.com/tos-cn-i-a9rns2rl98/d257f0e94f164c95abcb1a7368287482.jpg~tplv-a9rns2rl98-24:720:720.image?rcl=202511101445256355C80C04F4E9EC13A4&rk3s=8e244e95&rrcfp=8a172a1a&x-expires=1763361925&x-signature=%2BVdoaFxZgxA%2Bw4vDCI%2Fh65CSAyE%3D" alt="澳门风光" class="rounded-lg w-full h-48 object-cover mx-auto mb-4">
+                    <p class="text-sm text-gray-600">用心服务每一位旅客</p>
+                </div>
+            </div>
+            
+            <div class="mt-6花边 py-4"></div>
+            
+            <div class="contact-info text-center">
+                <h3 class="font-extrabold text-primary mb-2">联系我们</h3>
+                <p><i class="fa fa-phone mr-1"></i> 400-123-4567</p>
+                <p><i class="fa fa-weixin mr-1"></i> 智慧澳旅服务号</p>
+            </div>
+        </div>
+        
+        <!-- 中间栏：行程介绍 -->
+        <div class="w-full md:w-[54%] bg-white rounded-lg p-6 card-shadow">
+            <!-- 大学生套餐内容（默认显示） -->
+            <div id="student-tour-content">
+                <div class="text-center mb-8">
+                    <h2 class="text-xl md:text-2xl font-extrabold mb-4">大学生澳门一日游旅行套餐<br>--- 性价比超高</h2>
+                    <div class="w-32 h-1 bg-secondary mx-auto mb-6"></div>
+                    
+                    <div class="bg-primary/5 p-4 rounded-lg mb-6">
+                        <p class="text-lg">这是专为大学生设计的澳门一日游套餐，性价比超高！包含澳门著名景点，行程轻松舒适，时间安排合理不紧凑，非常适合预算有限的大学生群体。让你用最少的钱，玩转澳门最精华的景点，体验地道美食与独特文化。</p>
+                    </div>
+                </div>
+                
+                <!-- 上午行程 -->
+                <div class="mb-10">
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-white mr-3">
+                            <i class="fa fa-sun-o"></i>
+                        </div>
+                        <h3 class="text-xl font-extrabold text-primary">上午：澳门半岛文艺漫步</h3>
+                    </div>
+                    
+                    <div class="pl-13 space-y-6">
+                        <div class="flex flex-col md:flex-row gap-4">
+                            <div class="md:w-2/3">
+                                <h4 class="font-extrabold text-lg mb-2">议事亭前地 & 大三巴 (建议停留：1小时)</h4>
+                                <p>从口岸乘坐免费"发财车"前往新葡京或英皇娱乐酒店，下车后步行即可到达。议事亭前地是澳门的中心广场，周围色彩缤纷的葡式建筑和黑白波浪纹地面非常适合拍照。随后步行约10分钟前往大三巴牌坊，这是澳门的地标，必来打卡。</p>
+                            </div>
+                            <div class="md:w-1/3">
+                                <img src="https://p26-flow-imagex-download-sign.byteimg.com/tos-cn-i-a9rns2rl98/d914dc651cb3422eba057a8bbd8112ae.jpeg~tplv-a9rns2rl98-24:720:720.image?rcl=202511101445256355C80C04F4E9EC13A4&rk3s=8e244e95&rrcfp=8a172a1a&x-expires=1763361925&x-signature=esl2PlDXE2PRN5kVYCIc7V3yvT4%3D" alt="大三巴牌坊" class="rounded-lg w-full h-40 object-cover">
+                            </div>
+                        </div>
+                        
+                        <div class="flex flex-col md:flex-row gap-4">
+                            <div class="md:w-2/3">
+                                <h4 class="font-extrabold text-lg mb-2">恋爱巷 & 大炮台 (建议停留：40分钟)</h4>
+                                <p>从大三巴步行即可到达。恋爱巷就在大三巴左侧，这条短短的彩色小巷（以粉色和黄色为主）充满浪漫气息，是拍摄大三巴侧面和人像的绝佳地点。之后可以顺路登上旁边的大炮台，这里是俯瞰澳门半岛全景的好地方，视野开阔，适合拍摄城市风貌。</p>
+                            </div>
+                            <div class="md:w-1/3">
+                                <img src="https://p26-flow-imagex-download-sign.byteimg.com/tos-cn-i-a9rns2rl98/b4b0b9bccb674f3290cfab8803e2b165.jpeg~tplv-a9rns2rl98-24:720:720.image?rcl=202511101445256355C80C04F4E9EC13A4&rk3s=8e244e95&rrcfp=8a172a1a&x-expires=1763361925&x-signature=veeiFZ1qIiaLhrl38fjsHss03no%3D" alt="恋爱巷" class="rounded-lg w-full h-40 object-cover">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 中午行程 -->
+                <div class="mb-10">
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 rounded-full bg-accent flex items-center justify-center text-white mr-3">
+                            <i class="fa fa-cutlery"></i>
+                        </div>
+                        <h3 class="text-xl font-extrabold text-primary">中午：路环漫步与美食</h3>
+                    </div>
+                    
+                    <div class="pl-13 space-y-6">
+                        <div class="flex flex-col md:flex-row gap-4">
+                            <div class="md:w-2/3">
+                                <h4 class="font-extrabold text-lg mb-2">前往路环岛</h4>
+                                <p>从澳门半岛可以乘坐公共巴士（如26A路）前往路环，体验一下本地交通，车费约6 MOP。</p>
+                                
+                                <h4 class="font-extrabold text-lg mb-2 mt-4">路环码头 & 十月初五马路 (建议停留：1小时)</h4>
+                                <p>路环是澳门一个比较安静的区域，充满悠闲的渔村风情和色彩斑斓的建筑。十月初五马路沿海而建，沿途有薄荷绿、亮黄色的房屋、教堂和小教堂。仿佛走进了宫崎骏的动漫世界，随手一拍就是小清新大片。</p>
+                            </div>
+                            <div class="md:w-1/3">
+                                <img src="https://p26-flow-imagex-download-sign.byteimg.com/tos-cn-i-a9rns2rl98/aac20c2a93fd43faaa6bb10870ee1cc2.jpg~tplv-a9rns2rl98-24:720:720.image?rcl=202511101445256355C80C04F4E9EC13A4&rk3s=8e244e95&rrcfp=8a172a1a&x-expires=1763361925&x-signature=DzTADLBTsbHwJCgk4gYwicrP1Xc%3D" alt="路环风光" class="rounded-lg w-full h-40 object-cover">
+                            </div>
+                        </div>
+                        
+                        <div class="flex flex-col md:flex-row gap-4">
+                            <div class="md:w-2/3">
+                                <h4 class="font-extrabold text-lg mb-2">安德鲁饼店总店 (建议停留：30分钟)</h4>
+                                <p>来澳门一定要品尝蛋挞，而安德鲁饼店的总店就在路环。这里的蛋挞（约10-11MOP/个）香气扑鼻，酥皮脆，蛋浓香，据说是区分真假澳门人的方法之一。买个蛋挞，坐在海边长椅上慢慢享用，非常惬意。</p>
+                            </div>
+                            <div class="md:w-1/3">
+                                <img src="https://p26-flow-imagex-download-sign.byteimg.com/tos-cn-i-a9rns2rl98/d49e3639e445403cbdb4cc68d8888afc.jpg~tplv-a9rns2rl98-24:720:720.image?rcl=202511101445256355C80C04F4E9EC13A4&rk3s=8e244e95&rrcfp=8a172a1a&x-expires=1763361925&x-signature=p1zyCQrMoFnTArxVarisrHqPbU4%3D" alt="澳门蛋挞" class="rounded-lg w-full h-40 object-cover">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 下午行程 -->
+                <div class="mb-10">
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white mr-3">
+                            <i class="fa fa-clock-o"></i>
+                        </div>
+                        <h3 class="text-xl font-extrabold text-primary">下午：氹仔小清新与奢华体验</h3>
+                    </div>
+                    
+                    <div class="pl-13 space-y-6">
+                        <div class="flex flex-col md:flex-row gap-4">
+                            <div class="md:w-2/3">
+                                <h4 class="font-extrabold text-lg mb-2">官也街午餐 (建议停留：1小时)</h4>
+                                <p>从路环乘坐巴士（如26A）到氹仔的官也街。这里是著名的食街，虽然不长，但汇聚了不少地道美食。可以用相对实惠的价格品尝到猪扒包（约45 MOP）、莫义记的猫山王榴莲雪糕（约28 MOP）、木糠布甸等小吃作为午餐。</p>
+                            </div>
+                            <div class="md:w-1/3">
+                                <img src="https://p26-flow-imagex-download-sign.byteimg.com/tos-cn-i-a9rns2rl98/9d9c5ac1f0c04ba9bd44b7d934ce994e.jpg~tplv-a9rns2rl98-24:720:720.image?rcl=202511101445256355C80C04F4E9EC13A4&rk3s=8e244e95&rrcfp=8a172a1a&x-expires=1763361925&x-signature=LH7ilz6o7AYWIHAOXxh0ORU3ROY%3D" alt="官也街美食" class="rounded-lg w-full h-40 object-cover">
+                            </div>
+                        </div>
+                        
+                        <div class="flex flex-col md:flex-row gap-4">
+                            <div class="md:w-2/3">
+                                <h4 class="font-extrabold text-lg mb-2">龙环葡韵住宅式博物馆 (建议停留：40分钟)</h4>
+                                <p>从官也街步行几分钟即可到达。这是五栋薄荷绿色的葡式住宅别墅，建筑外观非常清新亮眼，是澳门较富代表性的景点之一，也是拍摄小清新风格照片的绝佳地点。前面的湿地景色也很不错。</p>
+                            </div>
+                            <div class="md:w-1/3">
+                                <img src="https://p26-flow-imagex-download-sign.byteimg.com/tos-cn-i-a9rns2rl98/83bce6481c8d4563b22b28a5156ebca0.jpeg~tplv-a9rns2rl98-24:720:720.image?rcl=202511101445256355C80C04F4E9EC13A4&rk3s=8e244e95&rrcfp=8a172a1a&x-expires=1763361925&x-signature=qjif0%2B0Wip6POc3Z7vgEgGEQGjU%3D" alt="龙环葡韵" class="rounded-lg w-full h-40 object-cover">
+                            </div>
+                        </div>
+                        
+                        <div class="flex flex-col md:flex-row gap-4">
+                            <div class="md:w-2/3">
+                                <h4 class="font-extrabold text-lg mb-2">威尼斯人度假村 (建议停留：1小时)</h4>
+                                <p>从龙环葡韵步行约15分钟即可到达威尼斯人。这里最出名的是其仿威尼斯水城设计的大运河购物中心，人造天空和运河景色很有特色，适合拍照打卡，即使不购物也能感受其氛围。</p>
+                            </div>
+                            <div class="md:w-1/3">
+                                <img src="https://p26-flow-imagex-download-sign.byteimg.com/tos-cn-i-a9rns2rl98/e46bf0ad1c8040c1ae348c2cb831f521.jpg~tplv-a9rns2rl98-24:720:720.image?rcl=202511101445256355C80C04F4E9EC13A4&rk3s=8e244e95&rrcfp=8a172a1a&x-expires=1763361925&x-signature=x1Lfg6CbNN88O%2F6pCBya0%2F7TKws%3D" alt="威尼斯人" class="rounded-lg w-full h-40 object-cover">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 晚上行程 -->
+                <div class="mb-6">
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 rounded-full bg-highlight flex items-center justify-center text-white mr-3">
+                            <i class="fa fa-moon-o"></i>
+                        </div>
+                        <h3 class="text-xl font-extrabold text-primary">晚上：夜景欣赏与返程</h3>
+                    </div>
+                    
+                    <div class="pl-13 space-y-6">
+                        <div class="flex flex-col md:flex-row gap-4">
+                            <div class="md:w-2/3">
+                                <h4 class="font-extrabold text-lg mb-2">永利皇宫观光缆车与音乐喷泉 (建议停留：45分钟)</h4>
+                                <p>从威尼斯人步行即可到达永利皇宫。一定要体验其免费的观光缆车，可以环绕表演湖一周，从空中欣赏度假村的璀璨景色。音乐喷泉表演（通常从中午开始，每30分钟一场）在夜晚配合灯光效果更加震撼。黄昏或夜晚乘坐，景色最佳。</p>
+                            </div>
+                            <div class="md:w-1/3">
+                                <img src="https://p26-flow-imagex-download-sign.byteimg.com/tos-cn-i-a9rns2rl98/42793d4bbb0c43469159e37eace754ac.jpg~tplv-a9rns2rl98-24:720:720.image?rcl=202511101445256355C80C04F4E9EC13A4&rk3s=8e244e95&rrcfp=8a172a1a&x-expires=1763361925&x-signature=%2FHZiLsNSF85cKODevc1lT85u6Vg%3D" alt="永利皇宫夜景" class="rounded-lg w-full h-40 object-cover">
+                            </div>
+                        </div>
+                        
+                        <div class="bg-accent/10 p-4 rounded-lg">
+                            <h4 class="font-extrabold text-lg mb-2">晚餐与夜景</h4>
+                            <p>关于晚餐，有几个高性价比选择：官也街、返回官也街解决晚餐，尝试更多小吃；度假村美食广场，一些度假村内有相对平价的美食广场或快餐店。</p>
+                            
+                            <h4 class="font-extrabold text-lg mb-2 mt-4">返程</h4>
+                            <p>在永利皇宫、威尼斯人或新濠天地等度假村乘坐前往关闸/拱北口岸或横琴口岸的免费"发财车"离开澳门，结束充实的一天。请注意末班车时间。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 家庭套餐内容（默认隐藏） -->
+            <div id="family-tour-content" class="hidden">
+                <!-- 返回按钮 -->
+                <button id="back-to-student-btn" class="mb-6 flex items-center text-primary hover:text-primary/80 transition">
+                    <i class="fa fa-arrow-left mr-2"></i>
+                    <span class="font-bold">返回大学生套餐</span>
+                </button>
+                
+                <div class="text-center mb-8">
+                    <h2 class="text-xl md:text-2xl font-extrabold mb-4">家庭澳门一日游旅行套餐<br>--- 亲子欢乐游</h2>
+                    <div class="w-32 h-1 bg-secondary mx-auto mb-6"></div>
+                    
+                    <div class="bg-primary/5 p-4 rounded-lg mb-6">
+                        <p class="text-lg">专为家庭设计的澳门一日游套餐，行程轻松有趣，兼顾成人与儿童的需求，包含多个适合亲子互动的景点，让全家人共度欢乐时光。</p>
+                    </div>
+                    
+                    <!-- 价格信息 -->
+                    <div class="mb-6 bg-accent/10 p-4 rounded-lg inline-block">
+                        <div class="text-2xl font-bold text-highlight">¥899</div>
+                        <p class="text-sm text-gray-600">2大1小家庭套餐</p>
+                        <p class="text-sm mt-1">增加额外成员：¥260/人</p>
+                    </div>
+                </div>
+                
+                <!-- 上午行程 -->
+                <div class="mb-10">
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-white mr-3">
+                            <i class="fa fa-sun-o"></i>
+                        </div>
+                        <h3 class="text-xl font-extrabold text-primary">上午：自然与动物探索</h3>
+                    </div>
+                    
+                    <div class="pl-13 space-y-6">
+                        <div class="flex flex-col md:flex-row gap-4">
+                            <div class="md:w-2/3">
+                                <h4 class="font-extrabold text-lg mb-2">09:00-11:00 石排湾郊野公园 (免费入场)</h4>
+                                <p>这里是澳门亲子游的绝佳起点。公园内的大熊猫馆免费开放，可以带孩子观看大熊猫"开开"和"心心"。馆内还设有影视室、展览区和互动区，让孩子们在趣味中了解大熊猫的习性与保护知识，此外，公园内还有珍稀动物展区（如小熊猫、金丝猴）和儿童游乐设施，足够孩子们尽情探索玩耍。</p>
+                                <p class="mt-2 text-sm bg-light p-2 rounded">
+                                    <i class="fa fa-info-circle text-primary mr-1"></i>
+                                    交通提示：可乘坐26A、21A或25路公交车抵达。使用澳门通（MPay）乘公交有优惠，或者准备好零钱（公交票价约3-4澳门币）。
+                                </p>
+                            </div>
+                            <div class="md:w-1/3">
+                                <img src="https://picsum.photos/id/237/600/400" alt="石排湾郊野公园" class="rounded-lg w-full h-40 object-cover">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 中午行程 -->
+                <div class="mb-10">
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 rounded-full bg-accent flex items-center justify-center text-white mr-3">
+                            <i class="fa fa-cutlery"></i>
+                        </div>
+                        <h3 class="text-xl font-extrabold text-primary">中午：美食与文化体验</h3>
+                    </div>
+                    
+                    <div class="pl-13 space-y-6">
+                        <div class="flex flex-col md:flex-row gap-4">
+                            <div class="md:w-2/3">
+                                <h4 class="font-extrabold text-lg mb-2">11:30-13:00 官也街午餐与龙环葡韵</h4>
+                                <p>从石排湾郊野公园可乘公交或打车前往官也街区域。官也街是澳门著名的手信美食街，这里云集了多种澳门特色小吃。推荐品尝安德鲁饼店的葡挞、猪扒包、木糠布甸等，一家人的午餐预算可以控制在200-300澳门币左右。</p>
+                                <p class="mt-2">午餐后，步行至附近的龙环葡韵。这里是五座薄荷绿色的葡式住宅建筑，非常适合拍照打卡（外部参观免费；进入博物馆购票，约澳门币5元，12岁以下或65岁以上免费）。在这里可以感受澳门独特的中葡文化交融氛围。</p>
+                            </div>
+                            <div class="md:w-1/3">
+                                <img src="https://picsum.photos/id/431/600/400" alt="官也街美食" class="rounded-lg w-full h-40 object-cover">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 下午行程 -->
+                <div class="mb-10">
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white mr-3">
+                            <i class="fa fa-clock-o"></i>
+                        </div>
+                        <h3 class="text-xl font-extrabold text-primary">下午：科学探索与海滨休闲</h3>
+                    </div>
+                    
+                    <div class="pl-13 space-y-6">
+                        <div class="flex flex-col md:flex-row gap-4">
+                            <div class="md:w-2/3">
+                                <h4 class="font-extrabold text-lg mb-2">13:30-15:30 澳门科学馆 (展览中心门票约29澳门币起)</h4>
+                                <p>午餐后可以乘公交前往澳门科学馆（参考公交路线：从官也街附近可乘公交至科学馆站）。科学馆由贝聿铭设计，馆内有14个主题各异的展厅，以互动展品深入浅出地介绍科学原理，非常适合亲子互动学习。如果时间允许，可以观看天文馆的球幕电影（需另外购票），视觉效果非常震撼。</p>
+                            </div>
+                            <div class="md:w-1/3">
+                                <img src="https://picsum.photos/id/96/600/400" alt="澳门科学馆" class="rounded-lg w-full h-40 object-cover">
+                            </div>
+                        </div>
+                        
+                        <div class="flex flex-col md:flex-row gap-4">
+                            <div class="md:w-2/3">
+                                <h4 class="font-extrabold text-lg mb-2">16:00-17:30 观音像海滨休闲区与永利皇宫缆车</h4>
+                                <p>从科学馆可以沿海滨步行至观音像海滨休闲区，这里有一个大型儿童游乐场，设施质量很好，适合孩子们活动玩耍。</p>
+                                <p class="mt-2">之后，可以乘公交前往路氹城的永利皇宫，体验免费的观光缆车（缆车16:00开放，约30分钟）。坐在缆车上可以俯瞰音乐喷泉表演和路氹城的华丽建筑，孩子们通常会非常喜欢。</p>
+                            </div>
+                            <div class="md:w-1/3">
+                                <img src="https://picsum.photos/id/164/600/400" alt="永利皇宫缆车" class="rounded-lg w-full h-40 object-cover">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 傍晚与晚上行程 -->
+                <div class="mb-6">
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 rounded-full bg-highlight flex items-center justify-center text-white mr-3">
+                            <i class="fa fa-moon-o"></i>
+                        </div>
+                        <h3 class="text-xl font-extrabold text-primary">傍晚与晚上：休闲与返程</h3>
+                    </div>
+                    
+                    <div class="pl-13 space-y-6">
+                        <div class="flex flex-col md:flex-row gap-4">
+                            <div class="md:w-2/3">
+                                <h4 class="font-extrabold text-lg mb-2">18:00-20:00 路氹城夜景与晚餐</h4>
+                                <p>傍晚时分，可以在路氹城区域（如威尼斯人度假村、巴黎人度假区）欣赏璀璨的夜景和灯光秀。这些综合度假村里通常有丰富的美食选择，从美食广场到各类餐厅均有，晚餐后，可以选择观看表演（如新濠天地的《水舞间》，但需提前购票且票价较高），或者直接返程。</p>
+                            </div>
+                            <div class="md:w-1/3">
+                                <img src="https://picsum.photos/id/188/600/400" alt="澳门夜景" class="rounded-lg w-full h-40 object-cover">
+                            </div>
+                        </div>
+                        
+                        <div class="bg-accent/10 p-4 rounded-lg">
+                            <h4 class="font-extrabold text-lg mb-2">返程</h4>
+                            <p>在永利皇宫、威尼斯人或新濠天地等度假村乘坐前往关闸/拱北口岸或横琴口岸的免费"发财车"离开澳门，结束愉快的家庭一日游。请注意末班车时间，建议晚上8点前开始返程。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 右侧栏：购买信息 -->
+        <div class="w-full md:w-[23%] bg-white rounded-lg p-5 card-shadow">
+            <!-- 大学生套餐购买信息（默认显示） -->
+            <div id="student-purchase-info">
+                <div class="text-center mb-6">
+                    <h3 class="text-xl font-extrabold text-primary">套餐详情</h3>
+                    <div class="w-20 h-1 bg-secondary mx-auto mt-2"></div>
+                </div>
+                
+                <div class="mb-6花边 py-4"></div>
+                
+                <!-- 价格信息 -->
+                <div class="mb-8 text-center">
+                    <div class="inline-block bg-highlight/10 rounded-full p-1 mb-4">
+                        <span class="text-highlight font-bold">超值优惠</span>
+                    </div>
+                    <div class="mb-2">
+                        <span class="text-3xl font-bold text-highlight">¥299</span>
+                        <span class="text-gray-500 line-through ml-2">¥399</span>
+                    </div>
+                    <p class="text-sm text-gray-600">大学生专属价/人</p>
+                    
+                    <div class="mt-4 bg-light p-3 rounded-lg text-left text-sm">
+                        <p class="mb-1"><i class="fa fa-check text-primary mr-1"></i> 包含所有景点门票</p>
+                        <p class="mb-1"><i class="fa fa-check text-primary mr-1"></i> 全程交通指引与规划</p>
+                        <p class="mb-1"><i class="fa fa-check text-primary mr-1"></i> 澳门本地数据流量</p>
+                        <p class="mb-1"><i class="fa fa-check text-primary mr-1"></i> 旅游意外险</p>
+                        <p class="text-gray-500"><i class="fa fa-info-circle mr-1"></i> 不含餐饮及个人消费</p>
+                    </div>
+                </div>
+                
+                <!-- 出行时间选择 -->
+                <div class="mb-8">
+                    <h4 class="font-extrabold text-primary mb-3 text-center">选择出行日期</h4>
+                    <div class="grid grid-cols-3 gap-2">
+                        <button class="date-btn py-2 border border-primary text-primary rounded hover:bg-primary/5 transition">12/1</button>
+                        <button class="date-btn py-2 border border-gray-300 text-gray-500 rounded hover:bg-gray-50 transition">12/4</button>
+                        <button class="date-btn py-2 border border-gray-300 text-gray-500 rounded hover:bg-gray-50 transition">12/7</button>
+                        <button class="date-btn py-2 border border-gray-300 text-gray-500 rounded hover:bg-gray-50 transition">12/10</button>
+                        <button class="date-btn py-2 border border-gray-300 text-gray-500 rounded hover:bg-gray-50 transition">12/13</button>
+                        <button class="date-btn py-2 border border-gray-300 text-gray-500 rounded hover:bg-gray-50 transition">12/16</button>
+                        <button class="date-btn py-2 border border-gray-300 text-gray-500 rounded hover:bg-gray-50 transition">12/19</button>
+                        <button class="date-btn py-2 border border-gray-300 text-gray-500 rounded hover:bg-gray-50 transition">12/22</button>
+                        <button class="date-btn py-2 border border-gray-300 text-gray-500 rounded hover:bg-gray-50 transition">12/25</button>
+                        <button class="date-btn py-2 border border-gray-300 text-gray-500 rounded hover:bg-gray-50 transition">12/28</button>
+                        <button class="date-btn py-2 border border-gray-300 text-gray-500 rounded hover:bg-gray-50 transition">12/31</button>
+                    </div>
+                </div>
+                
+                <!-- 购买按钮 -->
+                <div class="mb-6">
+                    <a href="#" class="block w-full py-3 bg-highlight text-white text-center rounded-lg font-bold btn-hover">
+                        立即购买
+                    </a>
+                    <p class="text-xs text-center text-gray-500 mt-2">点击后跳转至确认缴费界面</p>
+                </div>
+                
+                <div class="mb-6花边 py-4"></div>
+                
+                <!-- 套餐特色 -->
+                <div>
+                    <h4 class="font-extrabold text-primary mb-3 text-center">套餐特色</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex items-start">
+                            <i class="fa fa-star text-accent mt-1 mr-2"></i>
+                            <span>专为大学生设计，超高性价比</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa fa-star text-accent mt-1 mr-2"></i>
+                            <span>行程轻松不赶时间，游玩体验佳</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa fa-star text-accent mt-1 mr-2"></i>
+                            <span>覆盖澳门必去景点，不虚此行</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa fa-star text-accent mt-1 mr-2"></i>
+                            <span>含本地流量，导航通讯无忧</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa fa-star text-accent mt-1 mr-2"></i>
+                            <span>提供详细攻略，自由行也轻松</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="mt-6 p-3 bg-secondary/10 rounded-lg text-center text-sm">
+                    <p>需要多人同行优惠？</p>
+                    <p class="font-bold mt-1">3人同行，每人立减20元</p>
+                </div>
+            </div>
+            
+            <!-- 家庭套餐购买信息（默认隐藏） -->
+            <div id="family-purchase-info" class="hidden">
+                <div class="text-center mb-6">
+                    <h3 class="text-xl font-extrabold text-primary">家庭套餐详情</h3>
+                    <div class="w-20 h-1 bg-secondary mx-auto mt-2"></div>
+                </div>
+                
+                <div class="mb-6花边 py-4"></div>
+                
+                <!-- 价格信息 -->
+                <div class="mb-8 text-center">
+                    <div class="inline-block bg-highlight/10 rounded-full p-1 mb-4">
+                        <span class="text-highlight font-bold">家庭优惠</span>
+                    </div>
+                    <div class="mb-2">
+                        <span class="text-3xl font-bold text-highlight">¥899</span>
+                        <p class="text-sm text-gray-600">2大1小家庭套餐</p>
+                    </div>
+                    <p class="text-sm">增加成员：<span class="text-highlight font-bold">¥260</span>/人</p>
+                    
+                    <div class="mt-4 bg-light p-3 rounded-lg text-left text-sm">
+                        <p class="mb-1"><i class="fa fa-check text-primary mr-1"></i> 包含所有景点门票</p>
+                        <p class="mb-1"><i class="fa fa-check text-primary mr-1"></i> 亲子互动项目体验</p>
+                        <p class="mb-1"><i class="fa fa-check text-primary mr-1"></i> 家庭交通指引与规划</p>
+                        <p class="mb-1"><i class="fa fa-check text-primary mr-1"></i> 澳门本地数据流量（3份）</p>
+                        <p class="mb-1"><i class="fa fa-check text-primary mr-1"></i> 家庭旅游意外险</p>
+                        <p class="text-gray-500"><i class="fa fa-info-circle mr-1"></i> 不含餐饮及个人消费</p>
+                    </div>
+                </div>
+                
+                <!-- 出行时间选择 -->
+                <div class="mb-8">
+                    <h4 class="font-extrabold text-primary mb-3 text-center">选择出行日期</h4>
+                    <div class="grid grid-cols-3 gap-2">
+                        <button class="family-date-btn py-2 border border-primary text-primary rounded hover:bg-primary/5 transition">12/1</button>
+                        <button class="family-date-btn py-2 border border-gray-300 text-gray-500 rounded hover:bg-gray-50 transition">12/15</button>
+                    </div>
+                </div>
+                
+                <!-- 购买按钮 -->
+                <div class="mb-6">
+                    <a href="#" class="block w-full py-3 bg-highlight text-white text-center rounded-lg font-bold btn-hover">
+                        确认购买
+                    </a>
+                    <p class="text-xs text-center text-gray-500 mt-2">点击后跳转至确认缴费界面</p>
+                </div>
+                
+                <div class="mb-6花边 py-4"></div>
+                
+                <!-- 套餐特色 -->
+                <div>
+                    <h4 class="font-extrabold text-primary mb-3 text-center">家庭套餐特色</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex items-start">
+                            <i class="fa fa-star text-accent mt-1 mr-2"></i>
+                            <span>专为家庭设计，亲子互动性强</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa fa-star text-accent mt-1 mr-2"></i>
+                            <span>行程宽松，适合带孩子游玩</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa fa-star text-accent mt-1 mr-2"></i>
+                            <span>包含儿童友好景点与活动</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa fa-star text-accent mt-1 mr-2"></i>
+                            <span>家庭套票更优惠，性价比高</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa fa-star text-accent mt-1 mr-2"></i>
+                            <span>详细亲子游攻略，带娃不费心</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="mt-10 py-6 bg-primary/10 text-center">
+        <p>智慧澳旅 &copy; 2025 版权所有 | 旅游套餐服务</p>
+        <p class="text-sm mt-2 text-gray-600">旅游咨询热线：400-123-4567 | 工作时间：9:00-18:00</p>
+    </footer>
+
+    <script>
+        // 公司简介切换显示/隐藏
+        document.getElementById('info-btn').addEventListener('click', function() {
+            const intro = document.getElementById('company-intro');
+            intro.classList.toggle('hidden');
+        });
+        
+        // 大学生套餐和家庭套餐切换
+        document.getElementById('family-tour-btn').addEventListener('click', function() {
+            // 切换中间内容
+            document.getElementById('student-tour-content').classList.toggle('hidden');
+            document.getElementById('family-tour-content').classList.toggle('hidden');
+            
+            // 切换右侧购买信息
+            document.getElementById('student-purchase-info').classList.toggle('hidden');
+            document.getElementById('family-purchase-info').classList.toggle('hidden');
+        });
+        
+        // 返回大学生套餐功能
+        document.getElementById('back-to-student-btn').addEventListener('click', function() {
+            // 切换中间内容
+            document.getElementById('student-tour-content').classList.remove('hidden');
+            document.getElementById('family-tour-content').classList.add('hidden');
+            
+            // 切换右侧购买信息
+            document.getElementById('student-purchase-info').classList.remove('hidden');
+            document.getElementById('family-purchase-info').classList.add('hidden');
+        });
+        
+        // 大学生套餐日期选择功能
+        const dateBtns = document.querySelectorAll('.date-btn');
+        dateBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                // 移除所有按钮的选中状态
+                dateBtns.forEach(b => {
+                    b.classList.remove('bg-primary', 'text-white', 'border-primary');
+                    b.classList.add('border-gray-300', 'text-gray-500');
+                });
+                
+                // 设置当前按钮为选中状态
+                this.classList.remove('border-gray-300', 'text-gray-500');
+                this.classList.add('bg-primary', 'text-white', 'border-primary');
+            });
+        });
+        
+        // 家庭套餐日期选择功能
+        const familyDateBtns = document.querySelectorAll('.family-date-btn');
+        familyDateBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                // 移除所有按钮的选中状态
+                familyDateBtns.forEach(b => {
+                    b.classList.remove('bg-primary', 'text-white', 'border-primary');
+                    b.classList.add('border-gray-300', 'text-gray-500');
+                });
+                
+                // 设置当前按钮为选中状态
+                this.classList.remove('border-gray-300', 'text-gray-500');
+                this.classList.add('bg-primary', 'text-white', 'border-primary');
+            });
+        });
+    </script>
+</body>
+</html>
